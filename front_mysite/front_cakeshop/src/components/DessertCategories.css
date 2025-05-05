@@ -1,0 +1,27 @@
+.dessert-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Расстояние между категориями */
+    transition: transform 0.2s;
+}
+
+.dessert-category {
+    text-align: center;
+    text-decoration: none;
+    color: #333; /* Цвет текста */
+}
+.dessert-category:hover {
+  transform: scale(1.1); /* увеличение */
+}
+.dessert-category img {
+    width: 270px;/* Ширина изображения */
+    height: 230px; /* Высота изображения */
+    object-fit: cover;
+    border-radius: 8px; /* Закругление углов */
+}
+
+.dessert-category h3 {
+    margin-top: 5px; /* Отступ сверху для заголовка */
+}
+
+

@@ -1,0 +1,71 @@
+.dessert-list {
+    display: grid;
+    grid-template-columns: repeat(4, 350px);
+    gap: 20px;
+    padding: 20px;
+}
+
+.dessert-card {
+    width: 300px;       /* фиксированная ширина */
+    height: 300px;      /* фиксированная высота */
+    padding: 12px;
+    background-color: #fff8f4;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.dessert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.dessert-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.dessert-card h3 {
+    font-size: 16px;
+    margin: 0;
+    color: #d17878;
+}
+
+.dessert-card p {
+    margin: 6px 0;
+    color: #5a5a5a;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.amount {
+    font-size: inherit;
+}
+
+.currency {
+    font-size: 0.75em; /* 👈 меньше основного на 25% */
+    color: #888;       /* можно чуть посерее, если хочешь "приглушить" */
+    margin-left: 4px;
+    vertical-align: baseline; /* или try: baseline/middle */
+}
+
+.dessert-card button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.dessert-card button:hover {
+  background-color: #e055a1;
+}

@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    font-family: Papyrus, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background-image: url('../../assets/images/cheesecake-new-york_2.png'); /* Замените на путь к вашему изображению */
+    width: 98%;  /* Установите нужную ширину */
+    height: 300px; /* Установите нужную высоту */
+    background-size: cover; /* Заполняет весь контейнер */
+    background-repeat: no-repeat;
+    background-position: center; /* Центрирует изображение */
+    color: purple; /* Цвет текста */
+    padding: 20px;
+    text-align: -moz-center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень для глубины */
+    position: relative;
+
+
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 150px;
+    text-align: center;
+
+}
+
+.cart-icon {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: darkblue;
+}
+
+.cart-icon a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+
+}
+.cart-icon :hover {
+  transform: scale(1.2); /* увеличение */
+  transition: transform 0.2s ease;
+}
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #b85de6;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 25px;
+}
+
+nav ul li a {
+    color: deeppink;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    color: #8918a1; /* Цвет текста при наведении */
+    transform: scale(1.2); /* Увеличение продукта при наведении */
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #fff;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s; /* Плавный переход при наведении */
+}
+
+.product:hover {
+    transform: scale(1.1); /* Увеличение продукта при наведении */
+    transition: transform 0.2s ease;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+    transform: scale(1.1);
+}
+
+
+footer {
+    background-color: #e584fa;
+    height: 50px;
+    color: white;
+    text-align: center;
+    padding: 1px 0;
+    position: fixed;
+    bottom: 0;
+    width: 98%;
+}
+
+.home-container {
+    max-width: 1650px; /* Установите желаемую максимальную ширину */
+    margin: 0 auto; /* Центрирует контейнер */
+    padding: 20px; /* Добавьте отступы, если нужно */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Добавляет тень для эффекта */
+}
