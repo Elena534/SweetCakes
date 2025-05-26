@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Desert(models.Model):
+class Dessert(models.Model):
     CATEGORY_CHOICES = [
         ('cheesecake', 'Чизкейк'),
         ('mochi', 'Моти'),

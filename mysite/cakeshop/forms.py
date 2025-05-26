@@ -1,7 +1,7 @@
 from django import forms
-from .models import Desert  # Импортируйте вашу модель
+from .models import Dessert  # Импортируйте вашу модель
 
-class DesertForm(forms.ModelForm):
+class DessertForm(forms.ModelForm):
     class Meta:
-        model = Desert
+        model = Dessert
         fields = ['name','description', 'price', 'image']

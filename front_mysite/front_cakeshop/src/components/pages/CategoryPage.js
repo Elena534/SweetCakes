@@ -4,7 +4,7 @@ import './CategoryPage.css';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import CartIcon from './../CartIcon';
-
+import Navbar from "../Navbar";
 
 
 const CategoryPage = () => {
@@ -50,6 +50,7 @@ const CategoryPage = () => {
 
     return (
         <div>
+             <Navbar />
             <h2>Категория: {category}</h2>
              <CartIcon />
             <div className="dessert-list">
