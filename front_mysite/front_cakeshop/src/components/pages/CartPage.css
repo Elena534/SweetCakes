@@ -47,3 +47,33 @@
 .cart-item p button:hover {
   background-color: #ccc;
 }
+
+.delivery-date {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: Papyrus, sans-serif;
+  color: #8918a1;
+}
+
+.delivery-date label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.delivery-date input[type="date"] {
+  padding: 8px 12px;
+  border: 2px solid #e055a5;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Papyrus, sans-serif;
+  color: #8918a1;
+  background-color: #fff0f7;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.delivery-date input[type="date"]:focus {
+  border-color: #8918a1;
+}

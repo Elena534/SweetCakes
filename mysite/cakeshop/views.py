@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+from rest_framework.permissions import AllowAny
 from rest_framework import generics
 from .models import Dessert
 from .serializers import DessertSerializer
@@ -14,6 +15,13 @@ class DessertViewSet(viewsets.ModelViewSet):
     serializer_class = DessertSerializer # Указываем сериализатор
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category']
+
+    def get_permissions(self):
+        if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
+            return [AllowAny()]  # Разрешаем всем
+        return super().get_permissions()  # Для POST, PUT, DELETE — как обычно
+
+
 
 class DessertDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Dessert.objects.all()

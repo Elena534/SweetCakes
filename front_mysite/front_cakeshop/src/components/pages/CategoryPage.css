@@ -1,71 +1,127 @@
 .dessert-list {
-    display: grid;
-    grid-template-columns: repeat(4, 350px);
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 24px;
 }
 
+/* Карточка */
 .dessert-card {
-    width: 300px;       /* фиксированная ширина */
-    height: 300px;      /* фиксированная высота */
-    padding: 12px;
-    background-color: #fff8f4;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff8f4;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  min-height: 520px;
+  box-sizing: border-box;
 }
 
 .dessert-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
 }
 
-.dessert-card img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 12px;
-}
-
+/* Заголовок */
 .dessert-card h3 {
-    font-size: 16px;
-    margin: 0;
-    color: #d17878;
+  font-size: 20px;
+  color: #8918a1;
+  margin: 10px 0;
+  text-align: center;
 }
 
+/* Описание и цена */
 .dessert-card p {
-    margin: 6px 0;
-    color: #5a5a5a;
+  color: #444;
+  font-size: 14px;
+  text-align: center;
+  margin: 4px 0;
 }
 
 .price {
-    font-size: 20px;
-    font-weight: 500;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .amount {
-    font-size: inherit;
+  font-size: inherit;
 }
 
 .currency {
-    font-size: 0.75em; /* 👈 меньше основного на 25% */
-    color: #888;       /* можно чуть посерее, если хочешь "приглушить" */
-    margin-left: 4px;
-    vertical-align: baseline; /* или try: baseline/middle */
+  font-size: 0.8em;
+  color: #888;
+  margin-left: 4px;
 }
 
-.dessert-card button {
-  background-color: #ff69b4;
-  color: white;
+/* Изображение */
+.dessert-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 10px 0;
+}
+
+/* Количество */
+.quantity-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+/* Кнопки + и − */
+.quantity-btn {
+  background-color: #f28ab2; /* мягкий розовый */
   border: none;
-  padding: 8px 12px;
+  color: #fff;
+  font-weight: bold;
+  padding: 6px 14px;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 10px;
+  transition: background-color 0.2s ease;
+  font-size: 18px;
 }
 
+.quantity-btn:hover {
+  background-color: #d76a98;
+}
+
+/* Кнопка "Добавить в корзину" */
+.add-to-cart-btn {
+  margin-top: 16px;
+  background-color: #f06292;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  max-width: 220px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #d94e84;
+}
+
+.dessert-card button,
+.dessert-card .quantity-btn {
+  background-color: #ff69b4 !important;
+  color: white !important;
+  border: none !important;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.dessert-card .quantity-btn:hover,
 .dessert-card button:hover {
-  background-color: #e055a1;
+  background-color: #b85de6 !important;
 }

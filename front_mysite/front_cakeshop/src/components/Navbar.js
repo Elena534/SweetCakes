@@ -1,14 +1,33 @@
-import React, {useEffect} from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css';  // Импорт стилей для Navbar
-// import RegisterModal from "./RegisterModal";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => {
+  const [username, setUsername] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
-  document.body.classList.add('with-navbar');
-  return () => document.body.classList.remove('with-navbar');
-}, []);
-    return (
+    document.body.classList.add('with-navbar');
+    return () => document.body.classList.remove('with-navbar');
+  }, []);
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    const adminFlag = localStorage.getItem('is_admin') === 'true';
+    setUsername(storedUsername);
+    setIsAdmin(adminFlag);
+  }, []);
+
+  const handleProfileClick = () => {
+    if (isAdmin) {
+      navigate('/profile'); // админка
+    } else {
+      navigate('/user'); // личный кабинет пользователя
+    }
+  };
+
+  return (
     <nav className="navbar">
       <div className="navbar-logo">
         <Link to="/">SweetCakes.by</Link>
@@ -17,12 +36,17 @@ const Navbar = () => {
         <ul>
           <li><Link to="/">Главная</Link></li>
           <li><Link to="/products">Товары</Link></li>
-          <li><Link to="/login">Вход</Link></li>
-          {/*<button onClick={openRegisterModal}>Регистрация</button>*/}
+          {!username ? (
+            <li><Link to="/login">Вход</Link></li>
+          ) : (
+            <li onClick={handleProfileClick} style={{ cursor: 'pointer' }}>
+              {username}
+            </li>
+          )}
         </ul>
       </div>
     </nav>
-    );
+  );
 };
 
 export default Navbar;

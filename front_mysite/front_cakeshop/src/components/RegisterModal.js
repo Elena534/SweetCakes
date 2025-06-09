@@ -1,6 +1,7 @@
 import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'react';
 import './RegisterModal.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const RegisterModal = forwardRef(({ isOpen, onClose }, ref) => {
@@ -12,6 +13,7 @@ const RegisterModal = forwardRef(({ isOpen, onClose }, ref) => {
   });
 
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   useImperativeHandle(ref, () => ({
     resetForm() {
@@ -58,6 +60,7 @@ const RegisterModal = forwardRef(({ isOpen, onClose }, ref) => {
       setMessage('Успешная регистрация!');
       setTimeout(() => {
         onClose();
+        navigate('/');
       }, 1500);
     } catch (error) {
         if (error.response && error.response.data.username) {

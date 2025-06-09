@@ -1,0 +1,102 @@
+.admin-desserts-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dessert-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  background: #f7f7f7;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.dessert-form input,
+.dessert-form textarea,
+.dessert-form select,
+.dessert-form button {
+  flex: 1 1 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.dessert-form textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.dessert-form button {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dessert-form button:hover {
+  background-color: #388e3c;
+}
+
+.dessert-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.dessert-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.dessert-image {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.dessert-card button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dessert-card button:first-of-type {
+  background-color: #2196f3;
+  color: white;
+}
+
+.dessert-card button:first-of-type:hover {
+  background-color: #1976d2;
+}
+
+.dessert-card button:last-of-type {
+  background-color: #f44336;
+  color: white;
+}
+
+.dessert-card button:last-of-type:hover {
+  background-color: #d32f2f;
+}

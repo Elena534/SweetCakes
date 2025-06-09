@@ -9,11 +9,14 @@ const HomePage = () => {
   const [showRegister, setShowRegister] = useState(false);
   const [username, setUsername] = useState('');
   const registerModalRef = useRef(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const savedUsername = localStorage.getItem('username');
+    const isAdmin = localStorage.getItem('is_admin') === 'true';
     if (savedUsername) {
       setUsername(savedUsername);
+      setIsAdmin(isAdmin);
     }
   }, []);
 
@@ -41,26 +44,40 @@ const HomePage = () => {
         <div className="quit">
           {username ? (
             <>
-              <span className="header-text">👤{username} </span>
+              <span
+                className="header-text"
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  if (isAdmin) {
+                    window.location.href = '/admin';
+                  } else {
+                    window.location.href = '/user';
+                  }
+                }}
+              >
+                👤{username}
+              </span>
               <button onClick={handleLogout} className="header-btn">Выйти</button>
-              <Link to="/profile" className="header-link profile-link">Личный кабинет</Link>
             </>
           ) : (
             <>
-          <Link to="/login" className="header-link">Вход </Link>
-          <button onClick={openRegisterModal} className="header-btn">Регистрация</button>
+              <Link to="/login" className="header-link">Вход</Link>
+              <button onClick={openRegisterModal} className="header-btn">Регистрация</button>
             </>
           )}
         </div>
+
         <div className="cart-icon">
-          <Link to="/cart" className="header-link" >
+          <Link to="/cart" className="header-link">
             <CartIcon />
           </Link>
         </div>
+
         <h1>SweetCakes.by</h1>
+
         <nav>
           <ul>
-            <li><Link to="/">Главная </Link></li>
+            {/*<li><Link to="/">Главная</Link></li>*/}
             <li><Link to="/products">Товары</Link></li>
             <li><Link to="/about">О нас</Link></li>
           </ul>
@@ -68,18 +85,18 @@ const HomePage = () => {
       </header>
       <main>
         <h2>Наши шедевры для вас</h2>
-        <DessertCategories />
+        <DessertCategories/>
       </main>
       <footer>
         <p>&copy; 2025 SweetCakes</p>
       </footer>
 
       {/*{showRegister && (*/}
-        <RegisterModal
+      <RegisterModal
           ref={registerModalRef}
           isOpen={showRegister}
           onClose={() => setShowRegister(false)}
-        />
+      />
 
     </div>
   );

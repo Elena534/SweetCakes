@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,7 @@ const LoginForm = () => {
     password: ''
   });
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = e => {
     setFormData({...formData, [e.target.name]: e.target.value });
@@ -32,10 +34,20 @@ const LoginForm = () => {
       }
     });
 
+      const { username, is_staff } = userResponse.data;
+
        localStorage.setItem('username', userResponse.data.username);
-        setMessage(`✅ Добро пожаловать, ${userResponse.data.username}!`);
+       localStorage.setItem('is_admin', userResponse.data.is_staff);
 
+       setMessage(`✅ Добро пожаловать, ${username}!`);
 
+       if (is_staff) {
+         navigate('/admin-panel'); // админка
+        } else {
+          navigate('/profile'); // личный кабинет
+        }
+
+       navigate('/');
     } catch (error) {
       console.error('Ошибка логина:', error.response?.data || error.message);
       setMessage('❌ Ошибка входа: ' + (error.response?.data?.detail || 'Проверьте логин и пароль'));
