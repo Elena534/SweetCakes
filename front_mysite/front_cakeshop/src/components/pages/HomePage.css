@@ -1,58 +1,92 @@
-body {
-    margin: 0;
-    font-family: Papyrus, sans-serif;
-    background-color: #f4f4f4;
+.header {
+  position: relative;
+  background: url('../../assets/images/cheesecake-new-york_2.png') center center/cover no-repeat;
+  height: 300px;
+  color: purple;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.header {
-    background-image: url('../../assets/images/cheesecake-new-york_2.png'); /* Замените на путь к вашему изображению */
-    width: 98%;  /* Установите нужную ширину */
-    height: 300px; /* Установите нужную высоту */
-    background-size: cover; /* Заполняет весь контейнер */
-    background-repeat: no-repeat;
-    background-position: center; /* Центрирует изображение */
-    color: purple; /* Цвет текста */
-    padding: 20px;
-    text-align: -moz-center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень для глубины */
-    position: relative;
+.quit {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* Общие стили для элементов в header */
+.header-link,
+.header-btn,
+.header-text {
+    font-size: 16px;
+    color: #8918a1;
+    font-family: Papyrus, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.header-link:hover,
+.header-btn:hover,
+.header-text:hover {
+    background-color: #e055a5;
+    transform: scale(1.05);
+    border-radius: 4px;
+
+}
+.header-btn {
+  background: none;
+  border: none;
+  padding: 3px 5px;
+}
+/*!* Дополнительные стили для кнопок, если требуется *!*/
+/*.header-btn {*/
+/*  background: none;  !* не нужно, если хотите просто выглядеть как ссылка *!*/
+/*  border: none;*/
+/*  padding: 3px 8px;*/
+/*}*/
 
 
+.cart-icon {
+    position: absolute;;  /* Иконка фиксирована на экране */
+    top: 15px;  /* Отступ от верхнего края */
+    right: 5px;  /* Отступ от правого края */
+    z-index: 1000;  /* Иконка будет поверх остальных элементов */
+}
+
+.cart-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: #43ec1c;
+    transition: transform 0.3s ease;
+}
+
+.cart-icon:hover svg {
+    transform: scale(1.2);  /* Увеличение при наведении */
+}
+
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #6fdf24 !important;
+    color: #020101 !important;
+    font-size: 14px;
+    border-radius: 50%;
+    padding: 2px 6px;
 }
 
 nav ul {
-    list-style-type: none;
-    padding: 150px;
-    text-align: center;
-
-}
-
-.cart-icon {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: darkblue;
-}
-
-.cart-icon a {
-  position: relative;
-  color: inherit;
-  text-decoration: none;
-
-}
-.cart-icon :hover {
-  transform: scale(1.2); /* увеличение */
-  transition: transform 0.2s ease;
-}
-.cart-count {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: #b85de6;
-  color: white;
-  border-radius: 50%;
-  padding: 2px 6px;
-  font-size: 12px;
+  list-style-type: none;
+  padding-top: 150px;  /* Или меньше, например, 100px */
+  margin: 0;
+  text-align: center;
 }
 
 nav ul li {
@@ -61,6 +95,7 @@ nav ul li {
 }
 
 nav ul li a {
+    font-size: 18px;
     color: deeppink;
     text-decoration: none;
     font-weight: bold;
@@ -126,3 +161,44 @@ footer {
     padding: 20px; /* Добавьте отступы, если нужно */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Добавляет тень для эффекта */
 }
+
+/*.quit {*/
+/*    position: absolute;*/
+/*    top: 5px;*/
+/*    right: 20px; !* чуть левее корзины *!*/
+/*    display: flex;*/
+/*    gap: 10px; !* расстояние между кнопками *!*/
+/*    z-index: 10; !* поверх других элементов *!*/
+/*}*/
+
+/*.quit a {*/
+/*    text-decoration: none;*/
+/*    color: #8918a1;*/
+/*    !*background-color: #ff69b4;*!*/
+/*    padding: 3px 5px;*/
+/*    border-radius: 6px;*/
+/*    font-weight: bold;*/
+/*    transition: background-color 0.3s, transform 0.2s;*/
+/*}*/
+
+/*.quit a:hover {*/
+/*    background-color: #e055a5;*/
+/*    transform: scale(1.1);*/
+/*}*/
+
+/*.quit button {*/
+/*    background: none;*/
+/*    border: none;*/
+/*    color: #8918a1;*/
+/*    cursor: pointer;*/
+/*    padding: 3px 5px;*/
+/*    border-radius: 6px;*/
+/*    font-weight: bold;*/
+/*    font-family: Papyrus, sans-serif;*/
+/*    transition: background-color 0.3s, transform 0.2s;*/
+/*}*/
+
+/*.quit button:hover {*/
+/*    background-color: #e055a5;*/
+/*    transform: scale(1.1);*/
+/*}*/

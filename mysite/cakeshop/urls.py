@@ -1,14 +1,15 @@
 from django.urls import path, include
-from .views import DesertViewSet
-from .views import DesertDetail
+from .views import DessertViewSet
+from .views import DessertDetail
 from rest_framework.routers import DefaultRouter
 
+
 router = DefaultRouter()
-router.register(r'deserts', DesertViewSet, basename='deserts')
+router.register(r'desserts', DessertViewSet, basename='desserts')
 
 
 urlpatterns = [
     path('', include(router.urls)),# Включаем маршруты из маршрутизатора
-    path('deserts/<int:pk>/', DesertDetail.as_view(), name='desert-detail'),
+    path('desserts/<int:pk>/', DessertDetail.as_view(), name='dessert-detail'),
 
 ]

@@ -4,7 +4,7 @@ import './CategoryPage.css';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import CartIcon from './../CartIcon';
-
+import Navbar from "../Navbar";
 
 
 const CategoryPage = () => {
@@ -28,7 +28,7 @@ const CategoryPage = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:8000/api/deserts/?category=${category}`)
+        fetch(`http://localhost:8000/api/desserts/?category=${category}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Ошибка загрузки данных');
@@ -50,7 +50,8 @@ const CategoryPage = () => {
 
     return (
         <div>
-            <h2>Категория: {category}</h2>
+             <Navbar />
+            <h2>{category}</h2>
              <CartIcon />
             <div className="dessert-list">
                 {desserts.map(d => {
@@ -65,11 +66,11 @@ const CategoryPage = () => {
                             </p>
                             <img src={d.image} alt={d.name} width="200"/>
                             <div className="quantity-controls">
-                                <button onClick={() => decrease(d.id)}>−</button>
+                                <button className="quantity-btn" onClick={() => decrease(d.id)}>−</button>
                                 <span>{quantity}</span>
-                                <button onClick={() => increase(d.id)}>+</button>
+                                <button className="quantity-btn" onClick={() => increase(d.id)}>+</button>
                             </div>
-                            <button onClick={() => addToCart(d, quantity)}>Добавить в корзину</button>
+                            <button className="add-to-cart-btn" onClick={() => addToCart(d, quantity)}>Добавить в корзину</button>
                         </div>
                     );
                 })}

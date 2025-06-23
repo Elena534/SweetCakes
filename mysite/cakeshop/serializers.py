@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Desert
+from .models import Dessert
 
-class DesertSerializer(serializers.ModelSerializer):
+class DessertSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Desert
+        model = Dessert
         fields = '__all__'

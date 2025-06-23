@@ -1,0 +1,51 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ff69b4;  /* Цвет фона */
+    padding: 2px 10px;  /* Отступы внутри Navbar */
+    height: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    /*z-index: 1000;*/
+}
+
+.navbar-logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #f8f4f4;
+}
+
+.navbar-links ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-links li {
+    display: inline;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: #e584fa;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+    color: #8918a1;  /* Цвет текста при наведении */
+    transform: scale(1.1); /* Увеличение при наведении */
+}
+
+/* Позиционирование контента ниже Navbar */
+/*body {*/
+/*    padding-top: 60px;  !* Отступ сверху, чтобы контент не перекрывался Navbar *!*/
+/*}*/
+
+.with-navbar {
+  padding-top: 60px;
+}

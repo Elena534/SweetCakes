@@ -1,6 +1,9 @@
 from django.contrib import admin
+from .models import Dessert
 
-# Register your models here.
-from .models import Desert  # Импортируйте вашу модель
+class DessertAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'category')
+    list_filter = ('category',)
+    search_fields = ('name',)
 
-admin.site.register(Desert)  # Регистрация модели в админке
+admin.site.register(Dessert, DessertAdmin)  # Регистрация модели в админке
