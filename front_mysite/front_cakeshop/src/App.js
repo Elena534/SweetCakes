@@ -26,7 +26,7 @@ const AppContent = () => {
                 <Route path="/register" element={<RegisterModal />} />
                 <Route path="/user" element={<UserProfile />} />
                 <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="/profile" element={<AdminOrdersPanel />} />
+                <Route path="/profile" element={<UserProfile />} />
                 <Route path="/admin/orders" element={<AdminOrdersPanel />} />
                 <Route path="/admin/desserts" element={<AdminDessertPanel />} />
                 <Route path="/about" element={<AboutPage />} />

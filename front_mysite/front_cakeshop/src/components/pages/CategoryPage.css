@@ -125,3 +125,13 @@
 .dessert-card button:hover {
   background-color: #b85de6 !important;
 }
+
+.category-description {
+  font-size: 18px;
+  color: #42094e;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}

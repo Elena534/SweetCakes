@@ -92,11 +92,16 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',  # Название базы данных
-        'USER': 'postgres',  # Имя пользователя базы данных
-        'PASSWORD': 'postgres',  # Пароль пользователя базы данных
-        'HOST': 'localhost',  # Обычно это localhost
-        'PORT': '5432',  # Порт по умолчанию для PostgreSQL
+        'NAME': os.getenv('POSTGRES_DB', 'sweetcakes'),
+        'USER': os.getenv('POSTGRES_USER', 'helen'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'secret123'),
+        'HOST': os.getenv('DB_HOST', 'db'),  # ключевой момент
+        'PORT': os.getenv('DB_PORT', '5432'),
+        # 'NAME': 'postgres',  # Название базы данных
+        # 'USER': 'postgres',  # Имя пользователя базы данных
+        # 'PASSWORD': 'postgres',  # Пароль пользователя базы данных
+        # 'HOST': 'localhost',  # Обычно это localhost
+        # 'PORT': '5432',  # Порт по умолчанию для PostgreSQL
     }
 }
 

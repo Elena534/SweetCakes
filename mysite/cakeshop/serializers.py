@@ -5,3 +5,5 @@ class DessertSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dessert
         fields = '__all__'
+
+    image = serializers.ImageField(required=False)

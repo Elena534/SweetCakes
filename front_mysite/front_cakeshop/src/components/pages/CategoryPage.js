@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './CategoryPage.css';
-import { useContext } from 'react';
-import { CartContext } from '../../context/CartContext';
+
+// import { CartContext } from '../../context/CartContext';
 import CartIcon from './../CartIcon';
 import Navbar from "../Navbar";
 
 
 const CategoryPage = () => {
-    const {addToCart} = useContext(CartContext);
+    const categoryDescriptions = {
+        macaron: "Макарон, макароны, макаронс - как только их не называют. Это известные французские пирожные. Крышечки из теста на миндальной муке которые соединяют различными ганашами. Безумно вкусные, яркие и необычные пирожные, которые пользуются популярностью и имеют неповторимый вкус.",
+        cupcakes: "Капкейки — маленькие радости с разнообразными начинками и оформлением.",
+        eclairs: "Эклеры с нежным заварным кремом и хрустящей глазурью — классика французской кондитерской.",
+    };
+
     const {category} = useParams();
     const [desserts, setDesserts] = useState([]);
     // const [error, setError] = useState(null);
@@ -24,6 +29,39 @@ const CategoryPage = () => {
             ...prev,
             [id]: prev[id] > 1 ? prev[id] - 1 : 1
         }));
+    };
+
+   const handleAddToCart = async (dessert, quantity) => {
+      const token = localStorage.getItem('access');
+      if (!token) {
+        alert('Сначала войдите в систему');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:8000/api/orders/cart/add/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            dessert_id: dessert.id,
+            quantity: quantity
+          })
+        });
+
+        if (response.ok) {
+          alert('Добавлено в корзину!');
+        } else {
+          const data = await response.json();
+          console.error('Ошибка добавления:', data);
+          alert('Ошибка при добавлении в корзину');
+        }
+      } catch (error) {
+        console.error('Ошибка сети:', error);
+        alert('Ошибка сети при добавлении');
+      }
     };
 
 
@@ -50,9 +88,10 @@ const CategoryPage = () => {
 
     return (
         <div>
-             <Navbar />
+            <Navbar/>
             <h2>{category}</h2>
-             <CartIcon />
+            <p className="category-description">{categoryDescriptions[category]}</p>
+            <CartIcon/>
             <div className="dessert-list">
                 {desserts.map(d => {
                     const quantity = quantities[d.id] || 1;
@@ -70,7 +109,9 @@ const CategoryPage = () => {
                                 <span>{quantity}</span>
                                 <button className="quantity-btn" onClick={() => increase(d.id)}>+</button>
                             </div>
-                            <button className="add-to-cart-btn" onClick={() => addToCart(d, quantity)}>Добавить в корзину</button>
+                            <button className="add-to-cart-btn" onClick={() => handleAddToCart(d, quantity)}>Добавить в
+                                корзину
+                            </button>
                         </div>
                     );
                 })}

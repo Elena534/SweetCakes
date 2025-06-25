@@ -47,7 +47,7 @@ const LoginForm = () => {
           navigate('/profile'); // личный кабинет
         }
 
-       navigate('/');
+       // navigate('/');
     } catch (error) {
       console.error('Ошибка логина:', error.response?.data || error.message);
       setMessage('❌ Ошибка входа: ' + (error.response?.data?.detail || 'Проверьте логин и пароль'));

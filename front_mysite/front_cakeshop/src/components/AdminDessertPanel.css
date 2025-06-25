@@ -1,8 +1,8 @@
 .admin-desserts-container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: sans-serif;
 }
 
 h2 {
@@ -10,93 +10,143 @@ h2 {
   margin-bottom: 20px;
 }
 
-.dessert-form {
+.category-nav {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 30px;
-  background: #f7f7f7;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.category-link {
+  padding: 10px 15px;
+  border: none;
+  background-color: #ffcad4;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.category-link:hover {
+  background-color: #f8a5c2;
+}
+
+.dessert-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 40px;
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 .dessert-form input,
 .dessert-form textarea,
 .dessert-form select,
 .dessert-form button {
-  flex: 1 1 100%;
   padding: 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 6px;
   font-size: 14px;
 }
 
-.dessert-form textarea {
-  min-height: 60px;
-  resize: vertical;
-}
-
 .dessert-form button {
-  background-color: #4caf50;
-  color: white;
-  font-weight: bold;
+  background-color: #ff9aa2;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
 .dessert-form button:hover {
-  background-color: #388e3c;
+  background-color: #ff6f91;
+  color: white;
+}
+
+.category-list {
+  position: relative;
+}
+
+.category-block {
+  margin-bottom: 40px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(0) translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.category-block:nth-child(1) {
+  background-color: #ffe0e9;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+.category-block:nth-child(2) {
+  background-color: #e0f7fa;
+  margin-left: 40px;
+  margin-top: 40px;
+}
+.category-block:nth-child(3) {
+  background-color: #e8f5e9;
+  margin-left: 80px;
+  margin-top: 80px;
+}
+.category-block:nth-child(4) {
+  background-color: #f3e5f5;
+  margin-left: 120px;
+  margin-top: 120px;
+}
+.category-block:nth-child(5) {
+  background-color: #fff3e0;
+  margin-left: 160px;
+  margin-top: 160px;
 }
 
 .dessert-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  margin-top: 15px;
 }
 
 .dessert-card {
-  background-color: #fff;
+  width: 200px;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 10px;
   text-align: center;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
 }
 
 .dessert-image {
-  max-width: 100%;
-  max-height: 150px;
+  width: 100%;
+  height: 140px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 8px;
   margin-bottom: 10px;
 }
 
 .dessert-card button {
-  margin: 5px;
-  padding: 8px 12px;
+  margin-top: 5px;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 6px;
   border: none;
-  border-radius: 4px;
-  font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .dessert-card button:first-of-type {
-  background-color: #2196f3;
-  color: white;
+  background-color: #b2dfdb;
 }
-
 .dessert-card button:first-of-type:hover {
-  background-color: #1976d2;
+  background-color: #80cbc4;
 }
 
 .dessert-card button:last-of-type {
-  background-color: #f44336;
-  color: white;
+  background-color: #ef9a9a;
+  margin-left: 5px;
 }
-
 .dessert-card button:last-of-type:hover {
-  background-color: #d32f2f;
+  background-color: #e57373;
 }

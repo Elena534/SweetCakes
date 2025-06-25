@@ -31,4 +31,5 @@ urlpatterns = [
     path('auth/jwt/create/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/jwt/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api-auth/', include('rest_framework.urls')),
+    # path('api/cart/', include('orders.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

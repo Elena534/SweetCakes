@@ -1,9 +1,6 @@
 from django.db import models
-
-from django.db import models
 from django.conf import settings
-from cakeshop.models import Dessert  # Импортируй модель десерта, если она в другом приложении
-from django.utils import timezone
+from cakeshop.models import Dessert
 from django.conf import settings
 
 class Order(models.Model):
@@ -32,3 +29,16 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.quantity} × {self.dessert.name}'
+
+class Cart(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
+    dessert = models.ForeignKey(Dessert, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    class Meta:
+        unique_together = ('cart', 'dessert')
