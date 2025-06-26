@@ -1,7 +1,7 @@
 
 
 services:
-  backend:
+  mysite:
     build:
       context: ./mysite
     volumes:
@@ -12,6 +12,16 @@ services:
       - .env
     depends_on:
       - db
+
+  front_mysite:
+    build:
+      context: ./front_mysite/front_cakeshop
+    volumes:
+      - ./front_mysite/front_cakeshop:/app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
 
   db:
     image: postgres:15

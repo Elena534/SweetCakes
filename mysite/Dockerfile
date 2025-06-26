@@ -2,8 +2,8 @@
 FROM python:3.11-slim
 
 # Переменные окружения (1 рекомендуются по умолчанию)
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Устанавливаем рабочую папку внутри контейнера
 WORKDIR /app
@@ -18,5 +18,5 @@ COPY . /app/
 # Открываем порт 8000
 EXPOSE 8000
 
-# Запускаем сервер Django
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Запускаем миграции, создаём суперюзера и стартуем сервер
+CMD ["sh", "-c", "python manage.py migrate && python create_superuser.py && python manage.py runserver 0.0.0.0:8000"]
