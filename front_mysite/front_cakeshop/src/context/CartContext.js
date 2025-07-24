@@ -1,64 +1,51 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState(() =>{
-    const saved = localStorage.getItem('cart');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [cartItems, setCartItems] = useState([]);
+  const [totalItems, setTotalItems] = useState(0);
+  const [refreshFlag, setRefreshFlag] = useState(false);
 
-    useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-  }, [cartItems]);
+  // Загружаем корзину с сервера
+  const loadCartFromServer = useCallback(async () => {
+    const token = localStorage.getItem('access');
+    if (!token) return;
 
-    const addToCart = (item, quantity = 1) => {
-    setCartItems(prev => {
-        const exists = prev.find(i => i.id === item.id);
-        if (exists) {
-            return prev.map(i =>
-                i.id === item.id
-                    ? { ...i, quantity: i.quantity + quantity }
-                    : i
-            );
+    try {
+      const response = await axios.get('http://localhost:8000/api/orders/cart/', {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-        return [...prev, { ...item, quantity }];
-    });
-};
+      });
 
-    const removeFromCart = (id) => {
-        setCartItems(prev => prev.filter(item => item.id !== id));
-    };
+      const items = response.data.items || [];
+      setCartItems(items);
 
-    const clearCart = () => {
-        setCartItems([]);
-    };
+      const total = items.reduce((sum, item) => sum + item.quantity, 0);
+      setTotalItems(total);
+    } catch (error) {
+      console.error('Ошибка при загрузке корзины:', error);
+    }
+  }, []);
 
+  // Функция обновления (вызывается после добавления/удаления товара)
+  const refreshCart = () => {
+    setRefreshFlag(prev => !prev);
+  };
 
-    const increaseQuantity = (id) => {
-        setCartItems(prev =>
-        prev.map(item =>
-            item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-        );
-    };
+  useEffect(() => {
+    loadCartFromServer();
+  }, [loadCartFromServer, refreshFlag]);
 
-    const decreaseQuantity = (id) => {
-        setCartItems(prev =>
-        prev
-            .map(item =>
-            item.id === id
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            )
-            .filter(item => item.quantity > 0)
-     );
-    };
-
-    return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, increaseQuantity,
-      decreaseQuantity }}>
-            {children}
-        </CartContext.Provider>
-    );
+  return (
+    <CartContext.Provider value={{
+      cartItems,
+      totalItems,
+      refreshCart,
+    }}>
+      {children}
+    </CartContext.Provider>
+  );
 };

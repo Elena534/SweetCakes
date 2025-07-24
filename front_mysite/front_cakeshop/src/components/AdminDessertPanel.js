@@ -22,7 +22,7 @@ const AdminDessertsPanel = () => {
 
   const fetchDesserts = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/desserts/', {headers});
+      const response = await axios.get('http://localhost:8000/api/cakes/desserts/', {headers});
       setDesserts(response.data);
     } catch (error) {
       console.error('Ошибка при загрузке десертов:', error);
@@ -63,7 +63,7 @@ const AdminDessertsPanel = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Удалить десерт?')) return;
     try {
-      await axios.delete(`http://localhost:8000/api/desserts/${id}/`, {headers});
+      await axios.delete(`http://localhost:8000/api/cakes/desserts/${id}/`, {headers});
       fetchDesserts();
     } catch (error) {
       console.error('Ошибка при удалении десерта:', error);
@@ -79,9 +79,9 @@ const AdminDessertsPanel = () => {
 
     try {
       if (editingDessert) {
-        await axios.put(`http://localhost:8000/api/desserts/${editingDessert}/`, data, {headers});
+        await axios.put(`http://localhost:8000/api/cakes/desserts/${editingDessert}/`, data, {headers});
       } else {
-        await axios.post('http://localhost:8000/api/desserts/', data, {headers});
+        await axios.post('http://localhost:8000/api/cakes/desserts/', data, {headers});
       }
       setEditingDessert(null);
       setFormData({name: '', description: '', price: '', image: null, category: ''});

@@ -12,6 +12,6 @@ router.register(r'desserts', DessertViewSet, basename='desserts')
 urlpatterns = [
     path('', include(router.urls)),# Включаем маршруты из маршрутизатора
     path('desserts/<int:pk>/', DessertDetail.as_view(), name='dessert-detail'),
-    path('api/', include('orders.urls')),
-
 ]
+
+# path('api/', include('orders.urls')),

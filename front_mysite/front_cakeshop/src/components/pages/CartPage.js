@@ -10,7 +10,7 @@ const CartPage = () => {
 
   const fetchCart = async () => {
     try {
-      const response = await axios.get('/api/cart/');
+      const response = await axios.get('/orders/cart/');
       console.log('Ответ корзины:', response.data)
       setCartItems(response.data.items);
     } catch (err) {

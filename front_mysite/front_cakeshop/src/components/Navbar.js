@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ openLoginModal }) => {
   const [username, setUsername] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
@@ -19,12 +19,41 @@ const Navbar = () => {
     setIsAdmin(adminFlag);
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem('access');
+    if (token) {
+      fetch('http://localhost:8000/api/users/me/', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then(res => {
+          if (!res.ok) {
+            localStorage.clear();
+            setUsername(null);
+            setIsAdmin(false);
+          }
+        })
+        .catch(err => {
+          console.error('Ошибка при проверке токена:', err);
+          localStorage.clear();
+          setUsername(null);
+          setIsAdmin(false);
+        });
+    }
+  }, []);
+
   const handleProfileClick = () => {
     if (isAdmin) {
-      navigate('/profile'); // админка
+      navigate('/profile');
     } else {
-      navigate('/user'); // личный кабинет пользователя
+      navigate('/user');
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = '/';
   };
 
   return (
@@ -35,12 +64,18 @@ const Navbar = () => {
       <div className="navbar-links">
         <ul>
           <li><Link to="/">Главная</Link></li>
-          <li><Link to="/products">Товары</Link></li>
-          {!username ? (
-            <li><Link to="/login">Вход</Link></li>
+          {username ? (
+            <>
+              <li onClick={handleProfileClick} style={{ cursor: 'pointer' }}>
+                👤<span className="username">{username}</span>
+              </li>
+              <li>
+                <button className="logout-button" onClick={handleLogout}>Выйти</button>
+              </li>
+            </>
           ) : (
-            <li onClick={handleProfileClick} style={{ cursor: 'pointer' }}>
-              {username}
+            <li>
+              <button className="login-button" onClick={openLoginModal}>Вход</button>
             </li>
           )}
         </ul>

@@ -4,12 +4,16 @@ import { Link } from 'react-router-dom';
 import DessertCategories from '../DessertCategories';
 import CartIcon from './../CartIcon';
 import RegisterModal from '../RegisterModal';
+import LoginForm from '../LoginForm';
 
 const HomePage = () => {
   const [showRegister, setShowRegister] = useState(false);
   const [username, setUsername] = useState('');
+  const [showLogin, setShowLogin] = useState(false);
   const registerModalRef = useRef(null);
   const [isAdmin, setIsAdmin] = useState(false);
+
+
 
   useEffect(() => {
     const savedUsername = localStorage.getItem('username');
@@ -24,6 +28,10 @@ const HomePage = () => {
     setShowRegister(true);
   };
 
+  const openLoginModal = () => {
+    setShowLogin(true);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('access');
     localStorage.removeItem('refresh');
@@ -31,6 +39,13 @@ const HomePage = () => {
     setUsername('');
     window.location.reload(); // обновим страницу
   };
+
+  const handleLoginSuccess = (username, isAdmin) => {
+    setUsername(username);
+    setIsAdmin(isAdmin);
+    setShowLogin(false);
+  };
+
 
   useEffect(() => {
     if (showRegister && registerModalRef.current) {
@@ -61,16 +76,14 @@ const HomePage = () => {
             </>
           ) : (
             <>
-              <Link to="/login" className="header-link">Вход</Link>
+              <button onClick={openLoginModal} className="header-btn">Вход</button>
               <button onClick={openRegisterModal} className="header-btn">Регистрация</button>
             </>
           )}
         </div>
 
         <div className="cart-icon">
-          <Link to="/cart" className="header-link">
             <CartIcon />
-          </Link>
         </div>
 
         <h1>SweetCakes.by</h1>
@@ -78,7 +91,8 @@ const HomePage = () => {
         <nav>
           <ul>
             {/*<li><Link to="/">Главная</Link></li>*/}
-            <li><Link to="/products">Товары</Link></li>
+            <li><Link to="/products">Как заказать</Link></li>
+            <li><Link to="/products">Доставка и оплата</Link></li>
             <li><Link to="/about">О нас</Link></li>
           </ul>
         </nav>
@@ -96,6 +110,12 @@ const HomePage = () => {
           ref={registerModalRef}
           isOpen={showRegister}
           onClose={() => setShowRegister(false)}
+      />
+
+        <LoginForm
+        isOpen={showLogin}
+        onClose={() => setShowLogin(false)}
+        onLoginSuccess={handleLoginSuccess}
       />
 
     </div>

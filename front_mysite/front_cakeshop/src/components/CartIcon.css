@@ -1,9 +1,9 @@
 .cart-icon {
-    position: absolute;
+    position: relative;
     fill: #020101;
     display: inline-block;
-    font-size: 25px;
-    cursor: copy;
+    font-size: 30px;
+    cursor: pointer;
 }
 
 .cart-icon:hover {
@@ -13,13 +13,45 @@
 
 .cart-count {
     position: absolute;
-    top: -8px;
-    right: -10px;
-    background-color: red;
+    top: -5px;
+    right: 25px;
+    background-color: #df2e88;
     color: white;
     border-radius: 50%;
     padding: 2px 6px;
     font-size: 12px;
 }
+.cart-icon svg {
+  fill: #822397 !important;
+}
+.category-page-container .cart-icon {
+  position: absolute;
+  left: 38cm;
+}
 
+.cart-icon {
+  background: none;
+  border: none;
+}
+
+.cart-icon a {
+  text-decoration: none;       /* убираем подчёркивание */
+  background: none;            /* убираем фон */
+  outline: none;               /* убираем обводку */
+  box-shadow: none;            /* убираем тень */
+  border: none;                /* на всякий случай */
+}
+
+.cart-icon a:hover {
+  background: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+.cart-icon {
+    position: absolute;;  /* Иконка фиксирована на экране */
+    top: 15px;  /* Отступ от верхнего края */
+    right: 25px;  /* Отступ от правого края */
+    z-index: 1000;  /* Иконка будет поверх остальных элементов */
+}
 

@@ -24,12 +24,20 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('cakeshop.urls')),
-    path('auth/', include('users.urls')),
+    path('api/cakes/', include('cakeshop.urls')),
     path('api/orders/', include('orders.urls')),
     path('api/users/', include('users.urls')),
-    path('auth/jwt/create/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('auth/jwt/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api-auth/', include('rest_framework.urls')),
+
+
+
+    path('auth/', include('users.urls')),
+
+
+    # path('auth/jwt/create/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    # path('auth/jwt/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
     # path('api/cart/', include('orders.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
