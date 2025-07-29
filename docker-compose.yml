@@ -26,9 +26,9 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_DB: sweetcakes
-      POSTGRES_USER: helen
-      POSTGRES_PASSWORD: secret123
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

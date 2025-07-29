@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './CartPage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from '../axiosInstance';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 
 const CartPage = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [deliveryDate, setDeliveryDate] = useState('');
+  const { refreshCart } = useContext(CartContext);
 
   const fetchCart = async () => {
     try {
@@ -27,6 +30,7 @@ const CartPage = () => {
   const increaseQuantity = async (dessertId) => {
     await axios.post('/orders/cart/add/', { dessert_id: dessertId, quantity: 1 });
     updateCart();
+    refreshCart()
   };
 
   const decreaseQuantity = async (dessertId) => {
@@ -36,13 +40,19 @@ const CartPage = () => {
     } else {
       await axios.post('/orders/cart/add/', { dessert_id: dessertId, quantity: -1 });
       updateCart();
+      refreshCart()
     }
   };
 
   const removeFromCart = async (dessertId) => {
-    await axios.post('/orders/cart/remove/', { dessert_id: dessertId });
-    updateCart();
+    try {
+      await axios.post('/orders/cart/remove/', { dessert_id: dessertId });
+      refreshCart(); // <--- обновляем корзину и счётчик
+    } catch (error) {
+      console.error('Ошибка при удалении из корзины', error);
+    }
   };
+
 
   const clearCart = async () => {
     await axios.post('/orders/cart/clear/');
