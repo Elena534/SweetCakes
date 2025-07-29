@@ -27,7 +27,7 @@
     font-weight: bold;
     text-decoration: none;
     margin: 0 5px;
-    cursor: pointer;
+    cursor: default;
     transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
@@ -44,43 +44,43 @@
   border: none;
   padding: 3px 5px;
 }
-/*!* Дополнительные стили для кнопок, если требуется *!*/
-/*.header-btn {*/
-/*  background: none;  !* не нужно, если хотите просто выглядеть как ссылка *!*/
-/*  border: none;*/
-/*  padding: 3px 8px;*/
+/* Дополнительные стили для кнопок, если требуется */
+.header-btn {
+  background: none;  /* не нужно, если хотите просто выглядеть как ссылка */
+  border: none;
+  padding: 3px 8px;
+}
+
+
+/*.cart-icon {*/
+/*    position: absolute;;  !* Иконка фиксирована на экране *!*/
+/*    top: 15px;  !* Отступ от верхнего края *!*/
+/*    right: 25px;  !* Отступ от правого края *!*/
+/*    z-index: 1000;  !* Иконка будет поверх остальных элементов *!*/
+/*}*/
+
+/*.cart-icon svg {*/
+/*    width: 40px;*/
+/*    height: 40px;*/
+/*    fill: #43ec1c;*/
+/*    transition: transform 0.3s ease;*/
+/*}*/
+
+/*.cart-icon:hover svg {*/
+/*    transform: scale(1.2);  !* Увеличение при наведении *!*/
 /*}*/
 
 
-.cart-icon {
-    position: absolute;;  /* Иконка фиксирована на экране */
-    top: 15px;  /* Отступ от верхнего края */
-    right: 5px;  /* Отступ от правого края */
-    z-index: 1000;  /* Иконка будет поверх остальных элементов */
-}
-
-.cart-icon svg {
-    width: 40px;
-    height: 40px;
-    fill: #43ec1c;
-    transition: transform 0.3s ease;
-}
-
-.cart-icon:hover svg {
-    transform: scale(1.2);  /* Увеличение при наведении */
-}
-
-
-.cart-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #6fdf24 !important;
-    color: #020101 !important;
-    font-size: 14px;
-    border-radius: 50%;
-    padding: 2px 6px;
-}
+/*.cart-count {*/
+/*    position: absolute;*/
+/*    !*top: -5px;*!*/
+/*    !*right: -5px;*!*/
+/*    background-color: #6fdf24 !important;*/
+/*    color: #020101 !important;*/
+/*    font-size: 14px;*/
+/*    border-radius: 50%;*/
+/*    padding: 2px 6px;*/
+/*}*/
 
 nav ul {
   list-style-type: none;

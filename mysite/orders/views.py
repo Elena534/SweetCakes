@@ -2,14 +2,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import status
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Cart, CartItem
 from cakeshop.models import Dessert
 from decimal import Decimal
 from rest_framework import viewsets, permissions
-from .models import Order
-from .serializers import OrderSerializer
+from .serializers import OrderSerializer, CartSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.decorators import action
 
 class UserOrdersView(APIView):
     permission_classes = [IsAuthenticated]
@@ -69,3 +69,42 @@ class CreateOrderView(APIView):
 
         return Response({'message': 'Заказ создан успешно', 'order_id': order.id}, status=status.HTTP_201_CREATED)
 
+class CartViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def get_cart(self, user):
+        cart, created = Cart.objects.get_or_create(user=user)
+        return cart
+
+    def list(self, request):
+        """Обрабатывает GET /cart/ — возвращает корзину пользователя"""
+        cart = self.get_cart(request.user)
+        serializer = CartSerializer(cart)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['post'])
+    def add(self, request):
+        cart = self.get_cart(request.user)
+        dessert_id = request.data.get('dessert_id')
+        quantity = int(request.data.get('quantity', 1))
+
+        item, created = CartItem.objects.get_or_create(cart=cart, dessert_id=dessert_id)
+        if not created:
+            item.quantity += quantity
+            item.save()
+
+        return Response({'message': 'Добавлено в корзину'}, status=status.HTTP_200_OK)
+
+    @action(detail=False, methods=['post'])
+    def remove(self, request):
+        cart = self.get_cart(request.user)
+        dessert_id = request.data.get('dessert_id')
+
+        CartItem.objects.filter(cart=cart, dessert_id=dessert_id).delete()
+        return Response({'message': 'Удалено из корзины'}, status=status.HTTP_200_OK)
+
+    @action(detail=False, methods=['post'], url_path='clear')
+    def clear(self, request):
+        user = request.user
+        CartItem.objects.filter(cart__user=user).delete()
+        return Response({'status': 'Корзина очищена'})

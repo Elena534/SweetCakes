@@ -1,10 +1,11 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CreateOrderView, UserOrdersView, AdminOrderViewSet
+from .views import CreateOrderView, UserOrdersView, AdminOrderViewSet, CartViewSet
 
 
 router = DefaultRouter()
 router.register(r'admin/orders', AdminOrderViewSet, basename='admin-orders')
+router.register('cart', CartViewSet, basename='cart')
 
 urlpatterns = [
     path('create/', CreateOrderView.as_view(), name='create_order'),

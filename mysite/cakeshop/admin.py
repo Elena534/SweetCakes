@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Dessert
 
+
 class DessertAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'category')
     list_filter = ('category',)

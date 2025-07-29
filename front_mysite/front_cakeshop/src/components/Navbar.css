@@ -9,7 +9,7 @@
     top: 0;
     left: 0;
     right: 0;
-    /*z-index: 1000;*/
+    z-index: 1000;
 }
 
 .navbar-logo {
@@ -47,5 +47,46 @@
 /*}*/
 
 .with-navbar {
-  padding-top: 60px;
+  padding-top: 20px;
+}
+
+.logout-button {
+    background-color: white;
+    border: none;
+    color: #e584fa;
+    font-weight: bold;
+    padding: 6px 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    outline: none;
+}
+
+.logout-button:hover {
+    background-color: #ecdfdf;
+    transform: scale(1.05);
+}
+
+.username-item {
+    color: #e584fa;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.username-item:hover {
+    background-color: #f8e7fc;
+    transform: scale(1.05);
+    color: #8918a1;
+}
+
+.navbar-links li {
+    display: flex;
+    align-items: center; /* выравнивание по вертикали */
+    padding: 0;
+    margin: 0;
 }

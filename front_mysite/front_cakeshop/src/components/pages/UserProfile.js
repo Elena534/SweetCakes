@@ -12,7 +12,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('access');
-    console.log('Токен:', token);
+    // console.log('Токен:', token);
 
     const fetchUserData = async () => {
       try {
@@ -21,7 +21,7 @@ const UserProfile = () => {
             Authorization: `Bearer ${token}`
           }
         });
-        console.log('Ответ от сервера:', response.data);
+        // console.log('Ответ от сервера:', response.data);
         setFormData({
           username: response.data.username,
           email: response.data.email,

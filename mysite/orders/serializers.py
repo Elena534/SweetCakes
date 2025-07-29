@@ -1,13 +1,14 @@
 from rest_framework import serializers
-from .models import Order, OrderItem
+from .models import Order, OrderItem, CartItem, Cart
 from cakeshop.models import Dessert
 from users.models import CustomUser
+
 
 
 class DessertShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dessert
-        fields = ['id', 'name', 'price']
+        fields = ['id', 'name', 'price', 'image']
 
 class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,3 +33,20 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'user', 'username', 'email', 'phone', 'created_at', 'delivery_date', 'status', 'total_price', 'is_paid', 'items']
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    dessert = DessertShortSerializer(read_only=True)
+    dessert_id = serializers.PrimaryKeyRelatedField(queryset=Dessert.objects.all(), source='dessert', write_only=True)
+
+    class Meta:
+        model = CartItem
+        fields = ['id', 'dessert', 'dessert_id', 'quantity']
+
+class CartSerializer(serializers.ModelSerializer):
+    items = CartItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Cart
+        fields = ['id', 'user', 'items']
+        read_only_fields = ['user']

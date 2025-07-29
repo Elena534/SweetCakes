@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Cart, CartItem
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
@@ -9,5 +9,7 @@ class OrderAdmin(admin.ModelAdmin):
     ordering = ('-created_at',)
 
 admin.site.register(OrderItem)
+admin.site.register(Cart)
+admin.site.register(CartItem)
 
 # Register your models here.

@@ -20,7 +20,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
 
-        # Добавим дополнительные данные о пользователе, если нужно
         data['user_id'] = self.user.id
         data['username'] = self.user.username
         if hasattr(self.user, 'phone'):

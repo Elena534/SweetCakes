@@ -1,0 +1,36 @@
+
+
+services:
+  mysite:
+    build:
+      context: ./mysite
+    volumes:
+      - ./mysite:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  front_mysite:
+    build:
+      context: ./front_mysite/front_cakeshop
+    volumes:
+      - ./front_mysite/front_cakeshop:/app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
