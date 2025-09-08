@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'djoser',
     'users',
     'orders',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -152,6 +153,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
 
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 AUTH_USER_MODEL = 'users.CustomUser'

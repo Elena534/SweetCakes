@@ -90,10 +90,9 @@ const HomePage = () => {
 
         <nav>
           <ul>
-            {/*<li><Link to="/">Главная</Link></li>*/}
-            <li><Link to="/products">Как заказать</Link></li>
-            <li><Link to="/products">Доставка и оплата</Link></li>
             <li><Link to="/about">О нас</Link></li>
+            <li><Link to="/individualorder">Индивидуальные заказы</Link></li>
+            <li><Link to="/payment">Доставка и оплата</Link></li>
           </ul>
         </nav>
       </header>

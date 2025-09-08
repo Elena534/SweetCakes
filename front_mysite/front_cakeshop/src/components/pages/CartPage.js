@@ -50,8 +50,7 @@ const CartPage = () => {
       refreshCart(); // <--- обновляем корзину и счётчик
     } catch (error) {
       console.error('Ошибка при удалении из корзины', error);
-    }
-  };
+    }};
 
 
   const clearCart = async () => {
