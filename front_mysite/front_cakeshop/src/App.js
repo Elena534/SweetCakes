@@ -13,6 +13,8 @@ import AdminDessertPanel from "./components/AdminDessertPanel";
 import AboutPage from './components/pages/AboutPage';
 import LoginModal from "./components/LoginForm";
 import { CartProvider } from './context/CartContext';
+import IndividualorderPage from "./components/pages/individualorder";
+import PaymentDeliveryPage from "./components/pages/paymentdelivery";
 
 const AppContent = ({ openLoginModal }) => {
   const location = useLocation();
@@ -32,6 +34,8 @@ const AppContent = ({ openLoginModal }) => {
         <Route path="/admin/orders" element={<AdminOrdersPanel />} />
         <Route path="/admin/desserts" element={<AdminDessertPanel />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/individualorder" element={<IndividualorderPage />} />
+        <Route path="/payment" element={<PaymentDeliveryPage />} />
       </Routes>
     </>
   );
