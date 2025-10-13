@@ -40,14 +40,13 @@ const CartPage = () => {
     } else {
       await axios.post('/orders/cart/add/', { dessert_id: dessertId, quantity: -1 });
       updateCart();
-      refreshCart()
     }
   };
 
   const removeFromCart = async (dessertId) => {
     try {
       await axios.post('/orders/cart/remove/', { dessert_id: dessertId });
-      refreshCart(); // <--- обновляем корзину и счётчик
+      updateCart()// <--- обновляем корзину и счётчик
     } catch (error) {
       console.error('Ошибка при удалении из корзины', error);
     }};
