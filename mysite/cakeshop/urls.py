@@ -14,4 +14,3 @@ urlpatterns = [
     path('desserts/<int:pk>/', DessertDetail.as_view(), name='dessert-detail'),
 ]
 
-# path('api/', include('orders.urls')),

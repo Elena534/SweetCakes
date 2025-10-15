@@ -101,7 +101,7 @@ const HomePage = () => {
         <DessertCategories/>
       </main>
       <footer>
-        <p>&copy; 2025 SweetCakes</p>
+        <p> Время работы: ежедневно с8.00 до 20.00 📞 +375(29)581-76-82  📧 sweets@confectionery.ru</p>
       </footer>
 
       {/*{showRegister && (*/}

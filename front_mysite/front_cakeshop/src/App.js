@@ -15,6 +15,7 @@ import LoginModal from "./components/LoginForm";
 import { CartProvider } from './context/CartContext';
 import IndividualorderPage from "./components/pages/individualorder";
 import PaymentDeliveryPage from "./components/pages/paymentdelivery";
+import LayoutWithFooter from './components/LayoutWithFooter';
 
 const AppContent = ({ openLoginModal }) => {
   const location = useLocation();
@@ -23,19 +24,62 @@ const AppContent = ({ openLoginModal }) => {
     <>
       {location.pathname !== '/' && <Navbar openLoginModal={openLoginModal} />}
       <Routes>
+        {/* Страницы без футера */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/:category" element={<CategoryPage />} />
-        <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterModal />} />
-        <Route path="/user" element={<UserProfile />} />
-        <Route path="/profile" element={<UserProfile />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/orders" element={<AdminOrdersPanel />} />
-        <Route path="/admin/desserts" element={<AdminDessertPanel />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/individualorder" element={<IndividualorderPage />} />
-        <Route path="/payment" element={<PaymentDeliveryPage />} />
+
+        {/* Страницы с футером */}
+        <Route path="/:category" element={
+          <LayoutWithFooter>
+            <CategoryPage />
+          </LayoutWithFooter>
+        } />
+        <Route path="/cart" element={
+          <LayoutWithFooter>
+            <CartPage />
+          </LayoutWithFooter>
+        } />
+        <Route path="/user" element={
+          <LayoutWithFooter>
+            <UserProfile />
+          </LayoutWithFooter>
+        } />
+        <Route path="/profile" element={
+          <LayoutWithFooter>
+            <UserProfile />
+          </LayoutWithFooter>
+        } />
+        <Route path="/admin" element={
+          <LayoutWithFooter>
+            <AdminDashboard />
+          </LayoutWithFooter>
+        } />
+        <Route path="/admin/orders" element={
+          <LayoutWithFooter>
+            <AdminOrdersPanel />
+          </LayoutWithFooter>
+        } />
+        <Route path="/admin/desserts" element={
+          <LayoutWithFooter>
+            <AdminDessertPanel />
+          </LayoutWithFooter>
+        } />
+        <Route path="/about" element={
+          <LayoutWithFooter>
+            <AboutPage />
+          </LayoutWithFooter>
+        } />
+        <Route path="/individualorder" element={
+          <LayoutWithFooter>
+            <IndividualorderPage />
+          </LayoutWithFooter>
+        } />
+        <Route path="/payment" element={
+          <LayoutWithFooter>
+            <PaymentDeliveryPage />
+          </LayoutWithFooter>
+        } />
       </Routes>
     </>
   );
