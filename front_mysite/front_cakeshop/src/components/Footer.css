@@ -1,0 +1,55 @@
+/* components/Footer.css */
+.footer {
+    background-color: #e584fa;
+    height: 50px;
+    color: white;
+    text-align: center;
+    padding: 1px 0;
+    width: 100%; /* 100% вместо 100vw */
+    box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
+    font-family: Papyrus, sans-serif;
+    position: fixed; /* Меняем на fixed */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Чтобы был поверх другого контента */
+}
+
+.footer-content {
+    max-width: 1650px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-text {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+    text-align: center;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.footer-text:hover {
+    background-color: #e055a5;
+    transform: scale(1.05);
+    color: white;
+}
+
+/* Для мобильных */
+@media (max-width: 768px) {
+    .footer {
+        height: 40px;
+    }
+
+    .footer-text {
+        font-size: 14px;
+        padding: 2px 6px;
+    }
+}
